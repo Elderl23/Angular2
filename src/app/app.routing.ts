@@ -2,6 +2,7 @@ import {Routes, RouterModule} from "@angular/router";
 import {ModuleWithProviders} from "@angular/core";
 
 import { LoginComponent } from './login/login.component';
+//import { DashboardComponent } from './dashboard/dash.component';
 
 
 const appRoutes: Routes = [

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 
 
 import { Cdash } from './dash';
+import { Path } from '../interfaces/path';
+import { PathService, HeaderOptions} from '../config/config';
 
 import { Headers, Http, Response, RequestOptions} from '@angular/http';
 
@@ -11,45 +13,37 @@ import { Observable }     from 'rxjs/Observable';
 
 // Statics
 import 'rxjs/add/observable/throw';
-
-// Operators
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/toPromise';
 
 // clase de servicio que puede ser compartido por muchos componentes.
 
 //servicio que devuelve promesa a el Componente
 @Injectable()
-export class DashService {
-  token: string;
-
-  private heroesUrl = 'http://localhost:8000/service-status-query/';  // URL to web api
+export class DashService extends HeaderOptions implements Path{
+  path;
 
   constructor(private http: Http) {
-    this.token = localStorage.getItem('token');
+    super();
   }
 
   getHeroes (): Observable<Cdash[]> {
-    let headers = new Headers({'Content-Type': 'application/json','Authorization': "Token "+this.token});
-    let options = new RequestOptions({ headers: headers });
 
-    return this.http.get(this.heroesUrl,options)
+    this.path = PathService.path+'service-status-query/';
+
+    return this.http.get(this.path,super.headersfunct())
                     .map(this.extractData)
                     .catch(this.handleError);
   }
 
-  addHero (name: string): Observable<Cdash> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+  // addHero (name: string): Observable<Cdash> {
+  //   let headers = new Headers({ 'Content-Type': 'application/json' });
+  //   let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.heroesUrl, { name }, options)
-                    .map(this.extractData)
-                    .catch(this.handleError);
-  }
+  //   return this.http.post(this.heroesUrl, { name }, options)
+  //                   .map(this.extractData)
+  //                   .catch(this.handleError);
+  // }
 
   private extractData(res: Response) {
     let body = res.json();

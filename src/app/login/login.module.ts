@@ -21,10 +21,11 @@ import { LoginService } from './login.service';
     FormsModule,
     HttpModule,
     JsonpModule,
-    LoginRoutingModule
+    LoginRoutingModule,
   ],
   declarations: [
-    LoginComponent
+    LoginComponent,
+
   ],
   providers: [
     LoginService
