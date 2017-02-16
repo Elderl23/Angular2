@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
+import { ConfGeneral} from '../config/config';
 
 import { Cdash } from './dash';
 import { DashService } from './dash.service';
@@ -11,14 +13,17 @@ import { DashService } from './dash.service';
 
 
 
-export class DashboardComponent implements OnInit {
+export class DashboardComponent extends ConfGeneral implements OnInit {
 
   objEmpleados : Cdash[] = [];
   errorMessage: string;
 
   constructor(
-    private heroService: DashService
-  ) { } //Inyectar el EmpleadoService en el constructor y mantenerlo en un campo privado 
+    private heroService: DashService,
+    private router: Router
+  ) { 
+    super();
+  } //Inyectar el EmpleadoService en el constructor y mantenerlo en un campo privado 
 
   //ciclo de vida para hacer la peticion a el servicio cuando nuestra EmpleadoComponent se activa.
 
@@ -27,6 +32,11 @@ export class DashboardComponent implements OnInit {
                      .subscribe(
                        objEmpleados => this.objEmpleados = objEmpleados,
                        error =>  this.errorMessage = <any>error);
+  }
+
+  onLogout() {
+    this.closeSession();
+    this.router.navigate(['/login']);
   }
 
     //ciclo de vida para hacer la peticion a el servicio cuando nuestra EmpleadoComponent se activa.

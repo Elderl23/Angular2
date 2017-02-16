@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-
 import { LoginService } from './login.service';
+import { ConfGeneral} from '../config/config';
 
 @Component({
   	selector: 'my-login',
@@ -11,28 +11,42 @@ import { LoginService } from './login.service';
 
 
 
-export class LoginComponent implements OnInit{
+export class LoginComponent extends ConfGeneral{
   model: any = {};
+  showAlert: boolean = false;
 
   constructor(
-    private heroServiceCons: LoginService,
+    private loginservice: LoginService,
     private router: Router
-  ) {} //Inyectar el Service en el constructor y mantenerlo en un campo privado 
+  ) {
+    super();
+
+    console.log(super());
+
+    console.log(this.router);
+  } 
 
 
   login() {
-        this.heroServiceCons.login(
+
+
+        this.loginservice.login(
           this.model.username,
-          this.model.password
+          this.model.password,
+          
         ).subscribe(
           data => {
             this.router.navigate(['./dashboard']);
           },
           error => {
             console.log(error);
+            this.showAlert = true;
           });
   }
-  ngOnInit() {
+
+  onLogout() {
+    this.closeSession();
+    this.router.navigate(['/login']);
   }
 
 }
