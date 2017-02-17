@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { ConfGeneral} from '../config/config';
 
+import { MenuComponent} from '../menu/menu.component';
+
 import { Cdash } from './dash';
 import { DashService } from './dash.service';
 
@@ -32,11 +34,6 @@ export class DashboardComponent extends ConfGeneral implements OnInit {
                      .subscribe(
                        objEmpleados => this.objEmpleados = objEmpleados,
                        error =>  this.errorMessage = <any>error);
-  }
-
-  onLogout() {
-    this.closeSession();
-    this.router.navigate(['/login']);
   }
 
     //ciclo de vida para hacer la peticion a el servicio cuando nuestra EmpleadoComponent se activa.

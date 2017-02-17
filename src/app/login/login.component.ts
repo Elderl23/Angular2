@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { ConfGeneral} from '../config/config';
 
+
+
 @Component({
   	selector: 'my-login',
   	templateUrl: 'app/login/templates/login.component.html',
@@ -20,10 +22,6 @@ export class LoginComponent extends ConfGeneral{
     private router: Router
   ) {
     super();
-
-    console.log(super());
-
-    console.log(this.router);
   } 
 
 
@@ -42,11 +40,6 @@ export class LoginComponent extends ConfGeneral{
             console.log(error);
             this.showAlert = true;
           });
-  }
-
-  onLogout() {
-    this.closeSession();
-    this.router.navigate(['/login']);
   }
 
 }

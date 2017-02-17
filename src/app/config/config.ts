@@ -1,4 +1,8 @@
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Headers, RequestOptions} from '@angular/http';
+import { Injectable } from '@angular/core';
+
+import { Observable } from 'rxjs/Observable';
 
 import { Path } from '../interfaces/path';
 import { Token } from '../interfaces/token';
@@ -31,12 +35,28 @@ export class ConfGeneral extends HeaderOptions implements ConfG{
 
     if(this.token){
         this.showMenu = true;
-        console.log("Mostramos menu");
-      }
+    }
   }
 
-
+  isLoggedIn(): boolean{
+    if(this.token){
+      return true;
+    }else{
+      return false;
+    }
+        
+  }
   closeSession(): void{
     sessionStorage.removeItem('token');
   }
+}
+
+@Injectable()
+export class AuthGuard extends ConfGeneral implements CanActivate {
+    constructor() { 
+      super();
+    }
+    canActivate() {
+      return this.isLoggedIn();
+    }
 }

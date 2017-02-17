@@ -12,7 +12,4 @@ export class AppComponent extends ConfGeneral{
 	constructor(private router: Router){
 		super();
 	}
-
-
-	
 }
