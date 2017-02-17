@@ -37,7 +37,6 @@ export class ConfGeneral extends HeaderOptions implements ConfG{
         this.showMenu = true;
     }
   }
-
   isLoggedIn(): boolean{
     if(this.token){
       return true;
@@ -50,8 +49,6 @@ export class ConfGeneral extends HeaderOptions implements ConfG{
     sessionStorage.removeItem('token');
   }
 }
-
-
 @Injectable()
 export class AuthGuard extends ConfGeneral implements CanActivate {
     constructor() { 
