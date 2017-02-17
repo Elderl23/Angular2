@@ -42,8 +42,7 @@ export class ConfGeneral extends HeaderOptions implements ConfG{
       return true;
     }else{
       return false;
-    }
-        
+    }   
   }
   closeSession(): void{
     sessionStorage.removeItem('token');
