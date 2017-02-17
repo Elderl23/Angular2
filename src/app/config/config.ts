@@ -60,3 +60,5 @@ export class AuthGuard extends ConfGeneral implements CanActivate {
       return this.isLoggedIn();
     }
 }
+
+
