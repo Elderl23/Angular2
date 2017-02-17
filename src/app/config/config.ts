@@ -51,6 +51,7 @@ export class ConfGeneral extends HeaderOptions implements ConfG{
   }
 }
 
+
 @Injectable()
 export class AuthGuard extends ConfGeneral implements CanActivate {
     constructor() { 
@@ -60,5 +61,3 @@ export class AuthGuard extends ConfGeneral implements CanActivate {
       return this.isLoggedIn();
     }
 }
-
-
