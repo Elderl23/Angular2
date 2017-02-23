@@ -1,25 +1,23 @@
 // Importaciones generales
 import { NgModule }      from '@angular/core';
 import { RouterModule, Routes}   from '@angular/router';
-
 import { AuthGuard} from '../config/config';
 
 // Component
-import { DashboardComponent } from './dash.component';
+import { AlumnosComponent } from './alumnos.component';
 
 
-const DashRoutes: Routes = [
+const AlumnosRoutes: Routes = [
       {
-        path: 'dashboard',
-        component: DashboardComponent,//Clase del comonente
-        //canActivate: [AuthGuard]
+        path: 'alumnos',
+        component: AlumnosComponent,//Clase del comonente
       }
 ];
 
 
 @NgModule({
   imports: [
-    RouterModule.forChild(DashRoutes)
+    RouterModule.forChild(AlumnosRoutes)
   ],
   exports: [
     RouterModule
@@ -28,4 +26,4 @@ const DashRoutes: Routes = [
 
 
 
-export class DashRoutingModule { }
+export class AlumnosRoutingModule { }

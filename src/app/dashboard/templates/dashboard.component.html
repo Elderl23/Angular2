@@ -1,33 +1,3 @@
-<!-- <div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="../" class="navbar-brand">{{title}}</a>
-          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        
-        <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav">
-            <li *ngIf="!showMenu">
-              <a routerLink="/login" routerLinkActive="active">Login</a>
-            </li>
-            <li *ngIf="showMenu">
-              <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-            </li>
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" (click)="onLogout()" routerLinkActive="active">Logout</a></li>
-          </ul>
-
-
-        </div>
-      </div>
-</div>     -->
-
 <my-menu></my-menu>
 
     <div class="container">
@@ -42,29 +12,10 @@
         <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-4">
             <div class="list-group table-of-contents">
-              <a class="list-group-item" href="#navbar">Navbar</a>
-              <a class="list-group-item" href="#buttons">Buttons</a>
-              <a class="list-group-item" href="#typography">Typography</a>
-              <a class="list-group-item" href="#tables">Tables</a>
-              <a class="list-group-item" href="#forms">Forms</a>
-              <a class="list-group-item" href="#navs">Navs</a>
-              <a class="list-group-item" href="#indicators">Indicators</a>
-              <a class="list-group-item" href="#progress-bars">Progress bars</a>
-              <a class="list-group-item" href="#containers">Containers</a>
-              <a class="list-group-item" href="#dialogs">Dialogs</a>
+              <a class="list-group-item" routerLink="/alumnos">Crud - Alumnos</a>
             </div>
           </div>
         </div>
-
-        <h3>Top Empleados</h3>
-        <div class="grid grid-pad">
-          <div *ngFor="let itemEmpleado of objEmpleados" (click)="gotoDetail(hero)" class="col-1-4">
-            <div class="module hero">
-              <h4>{{itemEmpleado.title}}</h4>
-            </div>
-          </div>
-        </div>
-
       </div> 
     </div>
 

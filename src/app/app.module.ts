@@ -16,6 +16,8 @@ import {routing, appRoutingProviders} from './app.routing';
 import { DashboardModule }     from './dashboard/dash.module';
 import { LoginModule }     from './login/login.module';
 
+import { AlumnosdModule }     from './crudAlumnos/alumnos.module';
+
 
 
 
@@ -28,7 +30,8 @@ import { LoginModule }     from './login/login.module';
     JsonpModule,
     routing,
     DashboardModule,
-    LoginModule
+    LoginModule,
+    AlumnosdModule
   ],
   declarations: [
   	AppComponent,

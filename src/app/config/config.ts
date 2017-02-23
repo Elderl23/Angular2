@@ -9,18 +9,23 @@ import { Token } from '../interfaces/token';
 import { ConfG } from '../interfaces/ConfGeneral';
 
 export const PathService: Path = {    
-    path: "http://localhost:8000/"    
+    path: "http://127.0.0.1:8000/" 
 };
 
 export class HeaderOptions implements Token{
 	token;
+  headersT;
   	constructor() {
   		this.token = sessionStorage.getItem('token');
   	}
 
   	headersfunct(): any{
-  		let headers = new Headers({'Content-Type': 'application/json','Authorization': "Token "+this.token});
-    	let options = new RequestOptions({ headers: headers });
+      if(this.token != null){
+        this.headersT = new Headers({'Content-Type': 'application/json','Authorization': "Token "+this.token});
+      }else{
+        this.headersT = new Headers({'Content-Type': 'application/json'});
+      }
+    	let options = new RequestOptions({ headers: this.headersT });
 
     	return options;
   	}

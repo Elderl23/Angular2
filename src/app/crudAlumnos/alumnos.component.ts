@@ -4,23 +4,23 @@ import { Router } from '@angular/router';
 import { ConfGeneral} from '../config/config';
 import { MenuComponent} from '../menu/menu.component';
 
-import { Cdash } from './dash';
-import { DashService } from './dash.service';
+import { Alumnos } from './alumnos';
+import { AlumnosService } from './alumnos.service';
 
 @Component({
-    selector: 'my-dashboard',
-    templateUrl: 'app/dashboard/templates/dashboard.component.html',
+    selector: 'my-alumnos',
+    templateUrl: 'app/crudAlumnos/templates/alumnos.component.html',
 })
 
 
 
-export class DashboardComponent extends ConfGeneral implements OnInit {
+export class AlumnosComponent extends ConfGeneral implements OnInit {
 
-  objEmpleados : Cdash[] = [];
+  objEmpleados : Alumnos[] = [];
   errorMessage: string;
 
   constructor(
-    private heroService: DashService,
+    private heroService: AlumnosService,
     private router: Router
   ) { 
     super();
@@ -37,6 +37,7 @@ export class DashboardComponent extends ConfGeneral implements OnInit {
 
     //ciclo de vida para hacer la peticion a el servicio cuando nuestra EmpleadoComponent se activa.
     ngOnInit(): void {
+      this.getHeroes();
     }
 
 
