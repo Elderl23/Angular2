@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+
+import { ValidationService } from '../service/validation.service';
 
 import { ConfGeneral} from '../config/config';
 import { MenuComponent} from '../menu/menu.component';
@@ -16,28 +20,76 @@ import { AlumnosService } from './alumnos.service';
 
 export class AlumnosComponent extends ConfGeneral implements OnInit {
 
-  objEmpleados : Alumnos[] = [];
+  objAllModel : Alumnos[] = [];
   errorMessage: string;
 
+  activateSave: boolean;
+  activateGetAll: boolean;
+
+  userForm: any;
+
   constructor(
-    private heroService: AlumnosService,
-    private router: Router
+    private alumnosService: AlumnosService,
+    private router: Router,
+    private formBuilder: FormBuilder
   ) { 
     super();
-  } //Inyectar el EmpleadoService en el constructor y mantenerlo en un campo privado 
+    this.activate(true,false);
 
-  //ciclo de vida para hacer la peticion a el servicio cuando nuestra EmpleadoComponent se activa.
-
-    getHeroes() {
-      this.heroService.getHeroes()
-                     .subscribe(
-                       objEmpleados => this.objEmpleados = objEmpleados,
-                       error =>  this.errorMessage = <any>error);
+    this.userForm = this.formBuilder.group({
+      'name': ['', Validators.required],
+      'email': ['', [Validators.required, ValidationService.emailValidator]],
+      'profile': ['', [Validators.required, Validators.minLength(10)]]
+    });
   }
 
-    //ciclo de vida para hacer la peticion a el servicio cuando nuestra EmpleadoComponent se activa.
+
+  saveUser() {
+    if (this.userForm.dirty && this.userForm.valid) {
+      alert(`Name: ${this.userForm.value.name} Email: ${this.userForm.value.email}`);
+    }
+  }
+
+
+
+
+
+
+  public functionEdit = (alumno) => {
+    console.log(alumno);
+  }
+
+  public functionDelete = (alumno) => {
+    console.log(alumno);
+  }
+ 
+
+   public functionOpenForm = (alumno) => {
+    this.activate(false,true);
+  }
+
+   public functionCancel = () => {
+    this.activate(true,false);
+  }
+
+  public functionSave = () => {
+    console.log("Guardamos");
+  }
+
+  private activate(getAll,save): any{
+    this.activateGetAll = getAll;
+    this.activateSave = save;
+  }
+
+
+  getall() {
+      this.alumnosService.getFunctionAll().subscribe(
+      objGetAll => this.objAllModel = objGetAll,
+      error =>  this.errorMessage = <any>error
+      );
+  }
     ngOnInit(): void {
-      this.getHeroes();
+      this.getall();
     }
 
 

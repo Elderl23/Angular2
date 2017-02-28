@@ -27,7 +27,7 @@ export class AlumnosService extends HeaderOptions implements Path{
     super();
   }
 
-  getHeroes (): Observable<Alumnos[]> {
+  getFunctionAll (): Observable<Alumnos[]> {
 
     this.path = PathService.path+'service-alumnos-query/';
 
@@ -47,7 +47,6 @@ export class AlumnosService extends HeaderOptions implements Path{
 
   private extractData(res: Response) {
     let body = res.json();
-    console.log(body);
     return body || { };
   }
 
