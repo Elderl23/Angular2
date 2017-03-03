@@ -7,9 +7,9 @@
 
     <nav>
       <ul>
-        <li><a href="#/login">Login</a></li>
+        <li *ngIf="!isLoggedIn()"><a href="#/login">Login</a></li>
         <li><a href="#/dashboard">Dashboard</a></li>
-        <li><a href="#" (click)="onLogout()" routerLinkActive="active">Logout</a></li>
+        <li *ngIf="isLoggedIn()"><a href="#" (click)="onLogout()" routerLinkActive="active">Logout</a></li>
       </ul>
     </nav><!-- / nav -->
 

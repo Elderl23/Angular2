@@ -1,6 +1,9 @@
 // Clase Empleado
-export class Cdash {
+export class Producto {
   pk: number;
-  model: string;
-  fields: string;
+  name: string;
+  descripcion: string;
+  precio: string;
+  stock: number;
+  imgbase64: string;
 }

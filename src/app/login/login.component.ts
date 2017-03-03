@@ -8,6 +8,7 @@ import { ConfGeneral} from '../config/config';
 
 @Component({
   	selector: 'my-login',
+    styleUrls: ['app/login/templates/login.component.css'],
   	templateUrl: 'app/login/templates/login.component.html',
 })
 
@@ -16,6 +17,9 @@ import { ConfGeneral} from '../config/config';
 export class LoginComponent extends ConfGeneral{
   model: any = {};
   showAlert: boolean = false;
+
+  MsgAlert: string;
+
 
   constructor(
     private loginservice: LoginService,
@@ -27,19 +31,21 @@ export class LoginComponent extends ConfGeneral{
 
   login() {
 
+    super.loading(true);
 
-        this.loginservice.login(
-          this.model.username,
-          this.model.password,
-          
-        ).subscribe(
+    this.loginservice.login(
+      this.model.username,
+      this.model.password,
+    ).subscribe(
           data => {
-            this.router.navigate(['./dashboard']);
+            this.router.navigate(['./alumnos']);
           },
           error => {
-            console.log(error);
+            this.MsgAlert = error;
             this.showAlert = true;
-          });
+            super.loading(false);
+          }
+     );
   }
 
 }

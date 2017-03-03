@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 
-import { Cdash } from './dash';
+import { Producto } from './dash';
 import { Path } from '../interfaces/path';
 import { PathService, HeaderOptions} from '../config/config';
 
@@ -27,28 +27,24 @@ export class DashService extends HeaderOptions implements Path{
     super();
   }
 
-  getHeroes (): Observable<Cdash[]> {
 
-    this.path = PathService.path+'service-status-query/';
+
+  getFunctionAll (): Observable<Producto[]> {
+
+    
+
+    this.path = PathService.path+'service-productos-query/';
 
     return this.http.get(this.path,super.headersfunct())
+                    //.map((res:Response) => res.json())
                     .map(this.extractData)
                     .catch(this.handleError);
   }
 
-  // addHero (name: string): Observable<Cdash> {
-  //   let headers = new Headers({ 'Content-Type': 'application/json' });
-  //   let options = new RequestOptions({ headers: headers });
-
-  //   return this.http.post(this.heroesUrl, { name }, options)
-  //                   .map(this.extractData)
-  //                   .catch(this.handleError);
-  // }
-
   private extractData(res: Response) {
     let body = res.json();
-    console.log(body);
-    return body || { };
+      console.log(body);
+      return body || { };
   }
 
 
@@ -62,7 +58,6 @@ export class DashService extends HeaderOptions implements Path{
   } else {
     errMsg = error.message ? error.message : error.toString();
   }
-  console.error(errMsg);
   return Observable.throw(errMsg);
 }
 

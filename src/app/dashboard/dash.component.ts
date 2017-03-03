@@ -4,8 +4,11 @@ import { Router } from '@angular/router';
 import { ConfGeneral} from '../config/config';
 import { MenuComponent} from '../menu/menu.component';
 
-import { Cdash } from './dash';
+import { Producto } from './dash';
 import { DashService } from './dash.service';
+
+
+
 
 @Component({
     selector: 'my-dashboard',
@@ -16,27 +19,37 @@ import { DashService } from './dash.service';
 
 export class DashboardComponent extends ConfGeneral implements OnInit {
 
-  objEmpleados : Cdash[] = [];
+  objAllModel : Producto[] = [];
   errorMessage: string;
+
 
   constructor(
     private heroService: DashService,
     private router: Router
   ) { 
     super();
-  } //Inyectar el EmpleadoService en el constructor y mantenerlo en un campo privado 
+    this.activate(true,false,false,false);
+  } 
 
-  //ciclo de vida para hacer la peticion a el servicio cuando nuestra EmpleadoComponent se activa.
-
-    getHeroes() {
-      this.heroService.getHeroes()
-                     .subscribe(
-                       objEmpleados => this.objEmpleados = objEmpleados,
-                       error =>  this.errorMessage = <any>error);
+  public cargarCarrito = (alumno) => {
+    console.log(alumno);
   }
 
-    //ciclo de vida para hacer la peticion a el servicio cuando nuestra EmpleadoComponent se activa.
+
+
+  getall() {
+
+    super.loading(true);
+
+    this.heroService.getFunctionAll().subscribe(
+      objGetAll => this.objAllModel = objGetAll,
+      error =>  this.errorMessage = <any>error,
+      () => super.loading(false)
+    );
+  }
+
     ngOnInit(): void {
+      this.getall();
     }
 
 

@@ -34,7 +34,7 @@ export class AlumnosComponent extends ConfGeneral implements OnInit {
     private formBuilder: FormBuilder
   ) { 
     super();
-    this.activate(true,false);
+    this.activate2(true,false);
 
     this.userForm = this.formBuilder.group({
       'name': ['', Validators.required],
@@ -65,18 +65,18 @@ export class AlumnosComponent extends ConfGeneral implements OnInit {
  
 
    public functionOpenForm = (alumno) => {
-    this.activate(false,true);
+    this.activate2(false,true);
   }
 
    public functionCancel = () => {
-    this.activate(true,false);
+    this.activate2(true,false);
   }
 
   public functionSave = () => {
     console.log("Guardamos");
   }
 
-  private activate(getAll,save): any{
+  private activate2(getAll,save): any{
     this.activateGetAll = getAll;
     this.activateSave = save;
   }

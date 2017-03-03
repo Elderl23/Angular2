@@ -1,57 +1,40 @@
-    <my-menu></my-menu>
-
-    <div class="container">
-
-<!-- Forms
-      ================================================== -->
-      <div class="page-header" id="banner">
-        <div class="row">
-          <div class="col-lg-8 col-md-7 col-sm-6">
-            <h1>Login</h1>
-            <p class="lead">Login en Angular2 :::::: User: ggg - Password: dsdsd :::::: </p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6">
-            
-            <div class="alert alert-dismissible alert-danger" *ngIf="showAlert">
-              <button type="button" class="close" data-dismiss="alert">&times;</button>
-              <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
-            </div>
-
-            <div class="well bs-component">
-              <form class="form-horizontal" #loginForm="ngForm" (ngSubmit)="login()">
-                <fieldset>
-                  <legend>Login</legend>
-                  <div class="form-group">
-                    <label for="inputEmail" class="col-lg-2 control-label">Usuario</label>
-                    <div class="col-lg-10">
-                      <input type="text" class="form-control" placeholder="username" name="username" [(ngModel)]="model.username" #username="ngModel" ngControl="username" required>
-                      <span *ngIf="!username.valid && username.touched">El Nombre de Usuario es obligatorio</span>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-                    <div class="col-lg-10">
-                      <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel" ngControl="password" required>
-                      <span *ngIf="!password.valid && password.touched">La Contraseña es obligatorio</span>
-                    </div>
-                  </div>
+<my-menu></my-menu>
+<section id="main-content">
+  <article class="content">
 
 
-                  <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                      <button type="submit" class="btn btn-primary">Login</button>
-                    </div>
-                  </div>
+    <div class="container">  
+  <form id="contact" #loginForm="ngForm" (ngSubmit)="login()">
+    <h3>Login</h3>
+    <h4>Ingresa tus credenciales de autenticación</h4>
 
-                </fieldset>
-              </form>
-            </div>
-          </div>
-          
-        </div>
+
+    <fieldset>
+      <input type="text" placeholder="username" name="username" [(ngModel)]="model.username" #username="ngModel" ngControl="username"tabindex="1" required autofocus>
+      <span *ngIf="!username.valid && username.touched">El Nombre de Usuario es obligatorio</span>
+    </fieldset>
+
+    <fieldset>
+      <input type="password" placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel" ngControl="password" tabindex="2" required>
+      <span *ngIf="!password.valid && password.touched">La Contraseña es obligatorio</span>
+    </fieldset>
+
+    <fieldset>
+      <div class="alertLogin" *ngIf="showAlert">
+          <strong>Oh!</strong> {{MsgAlert}}.
       </div>
-      </div>
+    </fieldset>
+
+
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+    </fieldset>
+    <!-- <p class="copyright">Designed by <a href="https://colorlib.com" target="_blank" title="Colorlib">Colorlib</a></p> -->
+  </form>
+</div>
+
+  <div  *ngIf="activateLoading" class="loading">Load
+    ing</div>
+  </article> <!-- /article -->
+</section> <!-- / #main-content -->
 

@@ -1,18 +1,28 @@
 <my-menu></my-menu>
 
 
-<section>
-       <article>
-           <h2>Titilo de contenido</h2>
-           <a class="list-group-item" routerLink="/alumnos">Crud - Alumnos</a>
-       </article>
-</section>
 
-    <aside>
-       <h3>Titulo de contenido</h3>
-           <p>contenido</p>
-    </aside>
 
+<section id="main-content">
+    <article class="content">
+
+
+      
+        <div id="item" *ngFor="let item of objAllModel">
+          <div class="imagen">
+          <a (click)="cargarCarrito(item.pk)"><img [src]="item.imgbase64" /></a>  
+          </div>
+          <div class="precio">${{item.precio}}</div>
+          <div class="stock">Stock: {{item.stock}}</div> 
+          <div class="titulo">{{item.name}}</div>
+        </div>
+
+
+
+  </article> <!-- /article -->
+</section> <!-- / #main-content -->
+
+<div  *ngIf="activateLoading" class="loading">Loading</div>
 
 
       

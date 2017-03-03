@@ -50,12 +50,12 @@ export class LoginService implements Path{
     let errMsg: string;
     if (error instanceof Response) {
       const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+      // const err = body.error || JSON.stringify(body);
+      // errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+      errMsg = body.non_field_errors[0];
     } else {
       errMsg = error.message ? error.message : error.toString();
     }
-    console.error(errMsg);
     return Observable.throw(errMsg);
   }
 

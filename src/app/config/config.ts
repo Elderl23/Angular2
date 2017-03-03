@@ -6,16 +6,33 @@ import { Observable } from 'rxjs/Observable';
 
 import { Path } from '../interfaces/path';
 import { Token } from '../interfaces/token';
-import { ConfG } from '../interfaces/ConfGeneral';
+import { ConfG, Login} from '../interfaces/ConfGeneral';
 
 export const PathService: Path = {    
     path: "http://127.0.0.1:8000/" 
 };
 
-export class HeaderOptions implements Token{
+
+export class ClassGenerica implements Login{
+
+  activateLoading;
+
+  constructor(){
+    this.loading(false);
+  }
+
+  protected loading(parameter): void{
+    this.activateLoading= parameter;
+  }
+
+}
+
+
+export class HeaderOptions extends ClassGenerica implements Token{
 	token;
   headersT;
   	constructor() {
+      super();
   		this.token = sessionStorage.getItem('token');
   	}
 
@@ -34,6 +51,9 @@ export class HeaderOptions implements Token{
 export class ConfGeneral extends HeaderOptions implements ConfG{
   title;
   showMenu;
+
+  all;save;edit;deleteC;
+
   constructor(){
     super();
     this.title = 'Tystab -- Angular2';
@@ -52,6 +72,14 @@ export class ConfGeneral extends HeaderOptions implements ConfG{
   closeSession(): void{
     sessionStorage.removeItem('token');
   }
+
+  protected activate(All,save,edit,deleteC): void{
+    this.all = All;
+    this.save = save;
+    this.edit = edit;
+    this.deleteC = deleteC;
+  }
+
 }
 @Injectable()
 export class AuthGuard extends ConfGeneral implements CanActivate {
