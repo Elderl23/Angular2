@@ -86,7 +86,20 @@ export class AuthGuard extends ConfGeneral implements CanActivate {
     constructor() { 
       super();
     }
+
+    isToken(): boolean{
+      console.log(this.token);
+      if(this.token){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
+
+
+
     canActivate() {
-      return this.isLoggedIn();
+      return this.isToken();
     }
 }

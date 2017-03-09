@@ -44,7 +44,8 @@ export class LoginComponent extends ConfGeneral{
             this.MsgAlert = error;
             this.showAlert = true;
             super.loading(false);
-          }
+          },
+          () => super.loading(false)
      );
   }
 
